@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Admincraft : Admin Web GUI Server Wrapper for Minecraft Servers" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Admincraft</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Alf-/AdminCraft">Fork Me on GitHub</a>
+
+          <h1 id="project_title">Admincraft</h1>
+          <h2 id="project_tagline">Admin Web GUI Server Wrapper for Minecraft Servers</h2>
+
+          <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/Alf-/AdminCraft/zipball/master">Download this project as a .zip file</a>
+            <a class="tar_download_link" href="https://github.com/Alf-/AdminCraft/tarball/master">Download this project as a tar.gz file</a>
+          </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>AdminCraft</h1>
+
+<p>AdminCraft is an open source Administration Web GUI Console for administering a
+Linux Minecraft Server. Admincraft is in early, but active development.</p>
+
+<p>AdminCraft provides the following features:</p>
+
+<ul>
+<li>Start, Stop, Restart the Minecraft server</li>
+<li>Create backups of worlds to a separate location or mounted filesystem</li>
+<li>Web Console to monitor server logs</li>
+<li>Username/Password protected</li>
+<li>Ability to chat with users or send manual commands</li>
+<li>Built-in reference for Block/Item Dec codes</li>
+<li>Configure server properties via Web GUI</li>
+<li>Server Status (Online/Offline/Restarting/Backing Up)</li>
+<li>View and configure user status (Connected players, Ops, Banned IPs|Players)</li>
+<li>Ability to schedule 'cron-like' backup jobs on set intervals</li>
+</ul><p>Features in progress for 1.0:</p>
+
+<ul>
+<li>Reworking item/block ID reference</li>
+<li>Login sessions, security and support for multiple Admin Users</li>
+<li>Support for viewing Log History</li>
+</ul><p>Features to add Post 1.0:</p>
+
+<ul>
+<li>Support to deploy and administer multiple instances of Minecraft Servers</li>
+<li>Support to deploy AdminCraft on a separate server than the Minecraft Server</li>
+<li>More server and Minecraft monitoring features</li>
+</ul><h2>Requirements</h2>
+
+<ul>
+<li>Minecraft Server 1.1+</li>
+<li>A Linux OS. AdminCraft has only been tested on Ubuntu 11.04,
+but should be compatible with at least 9.04+</li>
+<li>Python 2.6+. Python 3 is not yet supported</li>
+<li>Python dependencies: Flask Framework 0.8</li>
+<li>Enough server power to run a Minecraft Server. Basically at least
+a P4 with a minimum of 2GB of RAM. Minecraft likes to eat memory. :)</li>
+<li>Basic Linux knowledge. :)</li>
+</ul><h2>Installation (Ubuntu 9.04+)</h2>
+
+<p><strong>Note</strong> Upon 1.0 release, I will have an install script as well as a deb
+package. For now, you'll have to deal with the manual installation. :D</p>
+
+<p>Assuming you have at least Python 2.6+ installed and the minecraft_server.jar 
+downloaded, please follow the steps below: </p>
+
+<ol>
+<li>
+<p>If not installed already, please install sqlite3:</p>
+
+<pre><code>$ sudo apt-get install sqlite3
+</code></pre>
+</li>
+<li>
+<p>Clone AdminCraft.git:</p>
+
+<pre><code>$ git clone git://github.com/alf-/AdminCraft.git
+</code></pre>
+</li>
+<li>
+<p>Run setup.py to install dependencies:</p>
+
+<pre><code>$ python setup.py install
+</code></pre>
+</li>
+<li><p>Open config.ini and set the required variables.</p></li>
+<li>
+<p>Copy the Minecraft daemon to /etc/init.d/</p>
+
+<pre><code>$ sudo cp scripts/minecraft /etc/init.d/
+</code></pre>
+</li>
+<li>
+<p>Configure USERNAME, WORLD, MCPATH, BACKUPPATH in
+/etc/init.d/minecraft in the text editor of your choice</p>
+
+<pre><code>$ sudo vim /etc/init.d/minecraft
+</code></pre>
+</li>
+<li>
+<p>Set required permissions to the Minecraft daemon:</p>
+
+<pre><code>$ sudo chmod a+x /etc/init.d/minecraft
+</code></pre>
+</li>
+<li>
+<p>Run update-rc.d to create sym links:</p>
+
+<pre><code>$ sudo update-rc.d minecraft defaults
+</code></pre>
+</li>
+<li>
+<p>Now finally, run run.py:</p>
+
+<pre><code>$ python run.py
+</code></pre>
+
+<p>Or to run in the background:</p>
+
+<pre><code>$ nohup python run.py &amp;
+</code></pre>
+
+<p>If you wish to view the nohup output:</p>
+
+<pre><code>$ tail -f nohup.out
+</code></pre>
+</li>
+<li><p>Using your preferred web browser, open localhost:5000 (or your server's hostname:5000)</p></li>
+<li><p>Great success! (I hope)</p></li>
+</ol><h2>Notes</h2>
+
+<p>AdminCraft is in very early, but active development. Therefore, I cannot guarantee this will install, run, or work properly. </p>
+
+<p>AdminCraft runs under Flask's built-in server with debugging and auto-reloading disabled by default. You can turn this on by changing DEBUGMODE and AUTORELOADER to "True" in config.ini. It is recommended to disable debugging if deploying to an externally accessible server.</p>
+
+<p>There is much cleanup and refactoring that needs to be done. So expect major changes in future maintenance versions. </p>
+
+<p>Support is limited as the project is still under early active development. But if you need help installing, or run into any problems, feel free to contact me at alf.g.jr[at]gmail.com. I can only support Ubuntu 9.04+ installations at this time. </p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Admincraft maintained by <a href="https://github.com/Alf-">Alf-</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-31258440-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
