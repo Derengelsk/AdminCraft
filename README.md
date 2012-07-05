@@ -49,7 +49,7 @@ downloaded, please follow the steps below:
 
 1. If not installed already, please install sqlite3:
 
-        $ sudo apt-get install sqlite3
+        $ sudo apt-get install sqlite3 python-setuptools
 
 2. Clone AdminCraft.git:
 
